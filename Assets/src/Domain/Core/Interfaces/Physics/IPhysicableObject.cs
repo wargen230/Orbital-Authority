@@ -6,6 +6,8 @@ namespace OrbitalAuthority.Domain.Core.Interfaces.Physics
     {
         double Mass { get; }
         bool UseCustomSpeed { get; }
-        Vector2 InitialVelocity { get; }
+        double InitialVelocity { get; }
+        double InitialPolarAngle { get; }
+        double InitialAzimuthalAngle { get; }
     }
 }

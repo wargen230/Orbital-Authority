@@ -23,20 +23,26 @@ namespace OrbitalAuthority.Presentation.MonoBehaviours.Physics
         void Start()
         {
             Vector3 startPosition = moonTransform.position;
-            double startVelocity = 0;
-
+            
+            // Расстояние в 3D пространстве (а не только XZ)
             double distance = Math.Sqrt(
                 startPosition.x * startPosition.x +
+                startPosition.y * startPosition.y +
                 startPosition.z * startPosition.z
             );
-            double angle = Math.Atan2(startPosition.z, startPosition.x);
 
+            double startVelocity;
             if (moon.UseCustomSpeed)
-                startVelocity = System.Math.Sqrt(moon.InitialVelocity.X * moon.InitialVelocity.X + moon.InitialVelocity.Y * moon.InitialVelocity.Y);
+                startVelocity = moon.InitialVelocity;
             else
-                startVelocity = System.Math.Sqrt(PhysicsConstants.G * earth.Mass / distance);
+                startVelocity = Math.Sqrt(PhysicsConstants.G * earth.Mass / distance);
 
-            currentState = earthMoonSolver.CreateOrbitState(distance, startVelocity, angle);
+            currentState = earthMoonSolver.CreateOrbitState(
+                distance, 
+                startVelocity, 
+                moon.InitialPolarAngle, 
+                moon.InitialAzimuthalAngle
+            );
         }
 
         void Update()
@@ -49,9 +55,9 @@ namespace OrbitalAuthority.Presentation.MonoBehaviours.Physics
             UpdateMoonPosition(currentState.Position);
         }
 
-        private void UpdateMoonPosition(Domain.Core.Math.Vectors.Vector3 position)
+       private void UpdateMoonPosition(Domain.Core.Math.Vectors.Vector3 position)
         {
-            moonTransform.position = new Vector3((float)position.X, (float)position.Z, (float)position.Y);
+            moonTransform.position = new Vector3((float)position.X, (float)position.Y, (float)position.Z);
         }
     }
 }
