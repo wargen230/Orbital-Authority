@@ -113,21 +113,6 @@ namespace OrbitalAuthority.Presentation.MonoBehaviours.Physics
             }
         }
 
-        // Метод для отладки - отображает информацию о системе
-        void OnGUI()
-        {
-            if (!Application.isPlaying) return;
-            
-            GUILayout.Label($"N-Body Simulation");
-            GUILayout.Label($"Time step: {dt * simulationSpeedMultiplier:F2} seconds");
-            GUILayout.Label($"Number of bodies: {bodies.Count}");
-            
-            if (GUILayout.Button("Reset Simulation"))
-            {
-                ResetSimulation();
-            }
-        }
-
         void ResetSimulation()
         {
             InitializeStates();
