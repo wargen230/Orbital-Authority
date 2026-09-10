@@ -1,0 +1,6 @@
+{
+  "id": "freighter",
+  "mass": 1e6,
+  "resonanceRange": [400.0, 480.0],
+  "cargoCapacity": 10000
+}}

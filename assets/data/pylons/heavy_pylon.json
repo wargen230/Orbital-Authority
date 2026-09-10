@@ -1,0 +1,8 @@
+{
+  "id": "heavy_pylon",
+  "virtualMass": 1e18,
+  "frequency": 440.0,
+  "radius": 500000,
+  "interferenceCoefficient": 0.85,
+  "buildCost": { "metal": 5000, "graviton": 200 }
+}}

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\OrbitalAuthority.Core\OrbitalAuthority.Core.csproj" />
+    <ProjectReference Include="..\OrbitalAuthority.Gameplay\OrbitalAuthority.Gameplay.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RootNamespace>OrbitalAuthority.AI</RootNamespace>
+    <AssemblyName>OrbitalAuthority.AI</AssemblyName>
+  </PropertyGroup>
+
+</Project>
