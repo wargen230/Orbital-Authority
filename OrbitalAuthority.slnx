@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/OrbitalAuthority.Client/OrbitalAuthority.Client.csproj" />
+    <Project Path="src/OrbitalAuthority.Core/OrbitalAuthority.Core.csproj" />
+    <Project Path="src/OrbitalAuthority.Data/OrbitalAuthority.Data.csproj" />
+    <Project Path="src/OrbitalAuthority.ECS/OrbitalAuthority.ECS.csproj" />
+    <Project Path="src/OrbitalAuthority.Gameplay/OrbitalAuthority.Gameplay.csproj" />
+    <Project Path="src/OrbitalAuthority.Physics/OrbitalAuthority.Physics.csproj" />
+    <Project Path="src/OrbitalAuthority.Rendering/OrbitalAuthority.Rendering.csproj" />
+  </Folder>
+</Solution>

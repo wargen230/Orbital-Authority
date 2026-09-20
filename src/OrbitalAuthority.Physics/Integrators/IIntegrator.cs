@@ -1,12 +1,13 @@
 // src/OrbitalAuthority.Physics/Integrators/IIntegrator.cs
-// Проект: Orbital Authority
+using OrbitalAuthority.ECS.Core;
 
-using System;
+namespace OrbitalAuthority.Physics.Integrators;
 
-namespace OrbitalAuthority.Physics.Integrators
+public interface IIntegrator
 {
-    public interface IIntegrator
-    {
-        // TODO: контракт
-    }
+    /// <summary>Фаза 1: обновление позиций.</summary>
+    void Step(World world, double dt);
+
+    /// <summary>Фаза 2: обновление скоростей (для Verlet). Для Euler — no-op.</summary>
+    void CompleteStep(World world, double dt);
 }

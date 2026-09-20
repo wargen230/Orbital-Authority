@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <RollForward>Major</RollForward>
     <PublishReadyToRun>false</PublishReadyToRun>
     <TieredCompilation>false</TieredCompilation>
@@ -24,10 +24,16 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.12" />
     <PackageReference Include="MonoGame.Framework.Native" Version="3.8.5.1" />
     <PackageReference Include="MonoGame.Runtime.Windows.Vulkan" Version="3.8.5.1" />
     <PackageReference Include="MonoGame.Runtime.Mac.Vulkan" Version="3.8.5.1" />
     <PackageReference Include="MonoGame.Runtime.Linux.Vulkan" Version="3.8.5.1" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
+    <MonoGameContentReference Include="..\..\Content\Content.mgcb" />
+    <ProjectReference Include="..\OrbitalAuthority.Core\OrbitalAuthority.Core.csproj" />
+    <ProjectReference Include="..\OrbitalAuthority.Gameplay\OrbitalAuthority.Gameplay.csproj" />
+    <ProjectReference Include="..\OrbitalAuthority.Physics\OrbitalAuthority.Physics.csproj" />
+    <ProjectReference Include="..\OrbitalAuthority.Rendering\OrbitalAuthority.Rendering.csproj" />
   </ItemGroup>
 </Project>

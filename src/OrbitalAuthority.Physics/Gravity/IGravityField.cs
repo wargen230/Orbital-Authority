@@ -1,12 +1,7 @@
-// src/OrbitalAuthority.Physics/Gravity/IGravityField.cs
-// Проект: Orbital Authority
+using OrbitalAuthority.Core.Math;
+using OrbitalAuthority.ECS.Core;
 
-using System;
-
-namespace OrbitalAuthority.Physics.Gravity
+public interface IGravityField
 {
-    public interface IGravityField
-    {
-        // TODO: контракт
-    }
+    Vector3D ComputeAcceleration(World world, double x, double y, double z, int excludeEntity = -1);
 }
