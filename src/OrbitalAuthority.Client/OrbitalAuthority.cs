@@ -28,6 +28,12 @@ public class OrbitalAuthorityGame : Game
     private Camera3D _camera = null!;
     private OrbitCameraController _cameraController = null!;
     private CelestialBodyRenderer3D _bodyRenderer = null!;
+    private RayTracedSunRenderer _rayTracedRenderer = null!;
+
+    // true — полноэкранная трассировка лучей (Content/SunLight.fx, свет+тени от Солнца),
+    // false — растеризация процедурных сфер (CelestialBodyRenderer3D). Переключение — только тут.
+    private static readonly bool UseRayTracing = true;
+
     private HudRenderer _hudRenderer = null!;
     private ObjectListRenderer _objectListRenderer = null!;
 
@@ -90,6 +96,10 @@ public class OrbitalAuthorityGame : Game
         _font = Content.Load<SpriteFont>("DefaultFont");
 
         _bodyRenderer = new CelestialBodyRenderer3D(GraphicsDevice, _world);
+
+        var sunLightEffect = Content.Load<Effect>("SunLight");
+        _rayTracedRenderer = new RayTracedSunRenderer(GraphicsDevice, _world, sunLightEffect);
+
         _hudRenderer = new HudRenderer(GraphicsDevice, _font, _clock);
         _objectListRenderer = new ObjectListRenderer(GraphicsDevice, _font);
 
@@ -212,7 +222,10 @@ public class OrbitalAuthorityGame : Game
 
         GraphicsDevice.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, new Color(5, 5, 15), 1f, 0);
 
-        _bodyRenderer.Draw(_camera);
+        if (UseRayTracing)
+            _rayTracedRenderer.Draw(_camera);
+        else
+            _bodyRenderer.Draw(_camera);
 
         _spriteBatch.Begin();
 
@@ -238,6 +251,7 @@ public class OrbitalAuthorityGame : Game
     protected override void UnloadContent()
     {
         _bodyRenderer?.Dispose();
+        _rayTracedRenderer?.Dispose();
         _objectListRenderer?.Dispose();
         base.UnloadContent();
     }

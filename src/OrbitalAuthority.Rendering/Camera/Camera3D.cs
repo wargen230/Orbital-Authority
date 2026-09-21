@@ -57,6 +57,28 @@ public sealed class Camera3D
         Pitch = Math.Clamp(Pitch + deltaPitch, MinPitch, MaxPitch);
     }
 
+    /// <summary>
+    /// Базисные векторы камеры (Right/Up/Forward) в мировой ориентации, для построения
+    /// лучей в шейдере трассировки — выводятся из тех же Yaw/Pitch, что и WorldPosition,
+    /// поэтому луч всегда совпадает с направлением взгляда растеризатора.
+    /// </summary>
+    public (Vector3 Right, Vector3 Up, Vector3 Forward) GetBasisVectors()
+    {
+        double cp = Math.Cos(Pitch);
+
+        var forward = new Vector3(
+            (float)(-cp * Math.Cos(Yaw)),
+            (float)(-cp * Math.Sin(Yaw)),
+            (float)(-Math.Sin(Pitch)));
+
+        var right = new Vector3((float)(-Math.Sin(Yaw)), (float)Math.Cos(Yaw), 0f);
+
+        var up = Vector3.Cross(right, forward);
+        up.Normalize();
+
+        return (right, up, forward);
+    }
+
     /// <summary>Мировая (double) координата → координата в пространстве рендера относительно камеры (float).</summary>
     public Vector3 ToRelative(double worldX, double worldY, double worldZ)
     {

@@ -5,7 +5,7 @@
 /intermediateDir:obj/$(Platform)
 /platform:DesktopVK
 /config:
-/profile:Reach
+/profile:HiDef
 /compress:False
 
 #begin Font
@@ -16,4 +16,11 @@
 
 
 #---------------------------------- Content ---------------------------------#
+
+#begin SunLight.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:SunLight.fx
+#end SunLight.fx
 
